@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Despacho Jurídico y Consultoría Integral</title>
+
+    <!-- Fuentes de Google -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --vino: #5B1E2B;
+            --vino-claro: #823040;
+            --vino-oscuro: #3d121c;
+            --hueso: #F9F6F0;
+            --hueso-oscuro: #EAE5DB;
+            --texto: #2C3539;
+            --blanco: #ffffff;
+            --dorado-acento: #C5A059;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--hueso);
+            color: var(--texto);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        .logo {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* --- Animaciones Base --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Navbar --- */
+        header {
+            background-color: rgba(249, 246, 240, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--vino);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--texto);
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--vino);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(to right, rgba(91, 30, 43, 0.95), rgba(91, 30, 43, 0.6)),
+                url('https://images.unsplash.com/photo-1505664194779-8beaceb93744?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 2rem;
+            color: var(--blanco);
+        }
+
+        .hero-content {
+            max-width: 900px;
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+
+        .btn-cta {
+            display: inline-block;
+            background-color: var(--dorado-acento);
+            color: var(--blanco);
+            padding: 1.2rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-cta:hover {
+            background-color: var(--blanco);
+            color: var(--vino);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.25);
+        }
+
+        /* --- NUEVA SECCIÓN DE SERVICIOS INTERACTIVA --- */
+        .services {
+            padding: 6rem 2rem;
+            background-color: var(--blanco);
+            text-align: center;
+        }
+
+        .services h2 {
+            font-size: 2.8rem;
+            color: var(--vino);
+            margin-bottom: 1rem;
+        }
+
+        .services p.subtitle {
+            color: #666;
+            margin-bottom: 4rem;
+            font-size: 1.1rem;
+        }
+
+        /* Contenedor Flex para las tarjetas expansibles */
+        .interactive-gallery {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            height: 500px;
+            /* Altura de la galería */
+            margin: 0 auto;
+            gap: 15px;
+        }
+
+        /* Cada tarjeta individual */
+        .panel {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 15px;
+            color: #fff;
+            cursor: pointer;
+            flex: 0.5;
+            /* Estado contraído */
+            position: relative;
+            transition: flex 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Capa oscura superpuesta (Overlay) */
+        .panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(91, 30, 43, 0.9) 0%, rgba(0, 0, 0, 0.3) 100%);
+            transition: background 0.5s ease;
+        }
+
+        .panel:hover::before {
+            background: linear-gradient(to top, rgba(91, 30, 43, 0.95) 0%, rgba(91, 30, 43, 0.5) 100%);
+        }
+
+        /* Contenido de la tarjeta */
+        .panel-content {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            right: 30px;
+            text-align: left;
+            z-index: 2;
+        }
+
+        .panel h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            white-space: nowrap;
+        }
+
+        /* Detalles ocultos por defecto */
+        .panel-details {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.3s ease, transform 0.5s ease;
+            pointer-events: none;
+            max-height: 0;
+        }
+
+        .panel-details ul {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .panel-details li {
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .panel-details li::before {
+            content: '✦';
+            color: var(--dorado-acento);
+            margin-right: 10px;
+        }
+
+        /* --- Estado Activo (Expandido) --- */
+        .panel.active {
+            flex: 4;
+            /* Se expande ocupando más espacio */
+            cursor: default;
+        }
+
+        .panel.active::before {
+            background: linear-gradient(to right, rgba(91, 30, 43, 0.95) 0%, rgba(0, 0, 0, 0.2) 100%);
+        }
+
+        .panel.active .panel-details {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+            max-height: 300px;
+            /* Suficiente para el texto */
+            transition-delay: 0.3s;
+            /* Aparece después de expandirse */
+        }
+
+        /* --- Secciones Mixtas --- */
+        .split-section {
+            display: flex;
+            flex-wrap: wrap;
+            background-color: var(--hueso);
+        }
+
+        .split-section.reverse {
+            flex-direction: row-reverse;
+            background-color: var(--vino);
+            color: var(--blanco);
+        }
+
+        .split-text,
+        .split-image {
+            flex: 1 1 50%;
+            min-width: 300px;
+        }
+
+        .split-text {
+            padding: 6rem 10%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .split-text h2 {
+            font-size: 2.5rem;
+            color: inherit;
+            margin-bottom: 1.5rem;
+        }
+
+        .split-section:not(.reverse) .split-text h2 {
+            color: var(--vino);
+        }
+
+        .split-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .image-wrapper {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+            overflow: hidden;
+        }
+
+        .image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .split-image:hover .image-wrapper img {
+            transform: scale(1.05);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--vino-oscuro);
+            color: var(--hueso);
+            padding: 5rem 2rem 2rem;
+            text-align: center;
+        }
+
+        /* --- Responsive --- */
+        @media(max-width: 900px) {
+            .interactive-gallery {
+                flex-direction: column;
+                /* En móviles se apilan verticalmente */
+                height: 800px;
+            }
+
+            .panel {
+                flex: 1;
+            }
+
+            .panel.active {
+                flex: 4;
+            }
+
+            .panel h3 {
+                white-space: normal;
+                font-size: 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="nav-container">
+            <div class="logo">Firma Legal</div>
+            <ul class="nav-links">
+                <li><a href="#servicios">Especialidades</a></li>
+                <li><a href="#mision">Nuestra Firma</a></li>
+                <li><a href="#equipo">Equipo</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Estrategia legal, contable y empresarial para su tranquilidad</h1>
+            <p>Prevención, protección y crecimiento corporativo desde un enfoque multidisciplinar de excelencia.</p>
+            <a href="#contacto" class="btn-cta">Programar sesión preventiva</a>
+        </div>
+    </section>
+
+    <!-- Sección Interactiva: Áreas de Práctica -->
+    <section id="servicios" class="services reveal">
+        <h2>Nuestras Áreas de Práctica</h2>
+        <p class="subtitle">Haga clic en cada área para explorar nuestras soluciones corporativas</p>
+
+        <!-- Galería Expansible (Flex Cards) -->
+        <div class="interactive-gallery">
+
+            <!-- Panel 1: Legal -->
+            <div class="panel active"
+                style="background-image: url('https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=800&q=80');">
+                <div class="panel-content">
+                    <h3>Área Legal</h3>
+                    <div class="panel-details">
+                        <p>Resguardo jurídico integral para evitar contingencias:</p>
+                        <ul>
+                            <li>Derecho corporativo y societario.</li>
+                            <li>Revisión de contratos mercantiles complejos.</li>
+                            <li>Defensa legal preventiva y litigios.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel 2: Contable -->
+            <div class="panel"
+                style="background-image: url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=80');">
+                <div class="panel-content">
+                    <h3>Área Contable</h3>
+                    <div class="panel-details">
+                        <p>Claridad y cumplimiento normativo absoluto:</p>
+                        <ul>
+                            <li>Gestión contable y auditorías internas.</li>
+                            <li>Planificación fiscal estratégica.</li>
+                            <li>Declaraciones tributarias obligatorias.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel 3: Financiera -->
+            <div class="panel"
+                style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80');">
+                <div class="panel-content">
+                    <h3>Área Financiera</h3>
+                    <div class="panel-details">
+                        <p>Análisis para potenciar la rentabilidad:</p>
+                        <ul>
+                            <li>Viabilidad técnica y financiera.</li>
+                            <li>Saneamiento de flujos de caja.</li>
+                            <li>Estrategias de inversión y reducción de costos.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel 4: Administrativa -->
+            <div class="panel"
+                style="background-image: url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=800&q=80');">
+                <div class="panel-content">
+                    <h3>Gestión Administrativa</h3>
+                    <div class="panel-details">
+                        <p>Eficiencia y modernización de procesos:</p>
+                        <ul>
+                            <li>Reingeniería de flujos de trabajo.</li>
+                            <li>Gestión de proveedores y trámites.</li>
+                            <li>Controles internos operativos.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel 5: RRHH -->
+            <div class="panel"
+                style="background-image: url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80');">
+                <div class="panel-content">
+                    <h3>Recursos Humanos</h3>
+                    <div class="panel-details">
+                        <p>Gestión del talento con enfoque preventivo:</p>
+                        <ul>
+                            <li>Nóminas, compensaciones y contratos.</li>
+                            <li>Normativas de seguridad y clima laboral.</li>
+                            <li>Retención de talento clave.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Misión y Valores -->
+    <section id="mision" class="split-section reveal">
+        <div class="split-text">
+            <h2>Nuestra Filosofía</h2>
+            <p><strong>Nuestra Misión:</strong> Proveer asesoramiento multidisciplinar preventivo que garantice la
+                estabilidad, el crecimiento y la total seguridad jurídica de nuestros clientes.</p>
+            <p><strong>Nuestros Valores:</strong> Nos regimos por la ética profesional inquebrantable, la transparencia
+                absoluta y un compromiso incondicional con la excelencia.</p>
+        </div>
+        <div class="split-image">
+            <div class="image-wrapper">
+                <img src="https://images.unsplash.com/photo-1524141108422-938a9bc6fa30?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                    alt="Arquitectura legal elegante">
+            </div>
+        </div>
+    </section>
+
+    <!-- Equipo -->
+    <section id="equipo" class="split-section reverse reveal">
+        <div class="split-text">
+            <h2>Cómo Trabaja Nuestro Equipo</h2>
+            <p>Trabajamos mediante un enfoque transversal. Evaluamos cada situación midiendo su impacto legal, contable
+                y financiero en simultáneo.</p>
+            <p>Nuestros expertos colaboran en la misma mesa de trabajo para ofrecerle una solución integral, sin las
+                ineficiencias de contratar múltiples despachos separados.</p>
+        </div>
+        <div class="split-image">
+            <div class="image-wrapper">
+                <img src="https://media.istockphoto.com/id/2028294369/photo/ceo-talking-with-coworkers-on-business-meeting-at-office.jpg?s=170667a&w=0&k=20&c=-0tIKPlCuTeF0TSZ8MKEZCx5_dDTzuMC6aHdzw319r0="
+                    alt="Equipo de abogados reunidos">
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacto">
+        <p style="margin-bottom: 2rem;"><strong>Contacto:</strong> contacto@firma-multidisciplinar.com | +00 (123)
+            456-7890</p>
+        <p style="font-size: 0.9rem; opacity: 0.6;">&copy; 2026 Firma Legal Multidisciplinar. Todos los derechos
+            reservados.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Lógica interactiva para la Galería de Tarjetas Expansibles
+        const panels = document.querySelectorAll('.panel');
+
+        panels.forEach(panel => {
+            panel.addEventListener('click', () => {
+                // Remover la clase 'active' de todos
+                panels.forEach(p => p.classList.remove('active'));
+                // Añadir 'active' al panel clickeado
+                panel.classList.add('active');
+            });
+        });
+
+        // Animación suave al hacer scroll
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+    </script>
+</body>
+
+</html>
