@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sitio en Mantenimiento | Firma Legal</title>
+
+    <!-- Fuentes de Google -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --vino: #5B1E2B;
+            --vino-oscuro: #3d121c;
+            --hueso: #F9F6F0;
+            --texto: #2C3539;
+            --blanco: #ffffff;
+            --dorado-acento: #C5A059;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--hueso);
+            color: var(--texto);
+            line-height: 1.6;
+        }
+
+        h1,
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+            line-height: 1;
+        }
+
+        a {
+            font-family: inherit;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- Header --- */
+        header {
+            background-color: rgba(249, 246, 240, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: var(--vino);
+            color: var(--hueso);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .logo-text {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--vino);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            line-height: 1.1;
+        }
+
+        .logo-sub {
+            display: block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--dorado-acento);
+            font-weight: 600;
+            margin-top: 2px;
+        }
+
+        /* --- Sección de error --- */
+        .error-hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, rgba(91, 30, 43, 0.86) 0%, rgba(61, 18, 28, 0.75) 55%, rgba(91, 30, 43, 0.88) 100%),
+                url('https://images.unsplash.com/photo-1505664194779-8beaceb93744?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            color: var(--hueso);
+        }
+
+        .error-content {
+            max-width: 640px;
+            animation: fadeIn 1.2s ease-out forwards;
+        }
+
+        .error-emblem {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            background: rgba(249, 246, 240, 0.12);
+            border: 1px solid rgba(249, 246, 240, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+
+        .error-title {
+            font-size: 2.1rem;
+            margin: 1rem 0 1.2rem;
+            text-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+        }
+
+        .error-text {
+            font-size: 1.05rem;
+            opacity: 0.92;
+            margin-bottom: 2.5rem;
+        }
+
+        .btn-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1.1rem 2.2rem;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.4s ease;
+            background-color: var(--dorado-acento);
+            color: var(--blanco);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-cta:hover {
+            background-color: var(--blanco);
+            color: var(--vino);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.25);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--vino-oscuro);
+            color: var(--hueso);
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.85rem;
+            opacity: 0.75;
+        }
+
+        @media(max-width: 600px) {
+            .error-title {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a class="logo-wrap" href="index.html">
+                <span class="logo-icon">
+                    <span class="material-symbols-outlined">gavel</span>
+                </span>
+                <span class="logo-text">Firma Legal<span class="logo-sub">Asesoría Multidisciplinaria</span></span>
+            </a>
+        </div>
+    </header>
+
+    <section class="error-hero">
+        <div class="error-content">
+            <div class="error-emblem">
+                <span class="material-symbols-outlined" style="font-size:32px;">construction</span>
+            </div>
+            <h1 class="error-title">Sitio en mantenimiento</h1>
+            <p class="error-text">En este momento nuestro sitio no se encuentra disponible. Estamos trabajando lo más
+                rápido posible para resolverlo. Disculpe los inconvenientes.</p>
+
+            <a class="btn-cta" href="index.html">
+                Reintentar
+                <span class="material-symbols-outlined" style="font-size:20px;">refresh</span>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2026 Firma Legal Multidisciplinar. Todos los derechos reservados.
+    </footer>
+
+</body>
+
+</html>
